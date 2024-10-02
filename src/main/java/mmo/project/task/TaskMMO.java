@@ -1,4 +1,4 @@
-package mmo.project.utils;
+package mmo.project.task;
 
 public class TaskMMO implements Runnable {
 
