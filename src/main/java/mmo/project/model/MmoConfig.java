@@ -39,6 +39,10 @@ public class MmoConfig {
     @Column(name = "status")
     private Integer status;
 
+    @ColumnDefault("1")
+    @Column(name = "per_mobile")
+    private Integer perMobile;
+
     public Long getId() {
         return id;
     }
@@ -103,6 +107,14 @@ public class MmoConfig {
         this.status = status;
     }
 
+    public Integer getPerMobile() {
+        return perMobile;
+    }
+
+    public void setPerMobile(Integer perMobile) {
+        this.perMobile = perMobile;
+    }
+
     @Override
     public String toString() {
         return "MmoConfig{" +
@@ -114,6 +126,7 @@ public class MmoConfig {
                 ", intervalS=" + intervalS +
                 ", countT=" + countT +
                 ", status=" + status +
+                ", per_mobile=" + perMobile +
                 '}';
     }
 }

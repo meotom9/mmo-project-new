@@ -15,7 +15,7 @@ public class GoogleFunctionUI {
 
     private static final Logger log = LoggerFactory.getLogger(GoogleFunctionUI.class);
 
-    private static ArrayList<String> l_user_agent = new ArrayList();
+//    private static ArrayList<String> l_user_agent = new ArrayList();
 
     private static ArrayList<String> l_window_size = new ArrayList();
 
@@ -23,19 +23,19 @@ public class GoogleFunctionUI {
         getUserAgent();
     }
 
-    public void getUserAgent() {
-        String filePath = "/deployments/user_agent"; // Specify the path to your file
-
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-//                System.out.println(line); // Process the line (print it in this case)
-                l_user_agent.add(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace(); // Handle exceptions (file not found, etc.)
-        }
-    }
+//    public void getUserAgent() {
+//        String filePath = "/deployments/user_agent"; // Specify the path to your file
+//
+//        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+//            String line;
+//            while ((line = br.readLine()) != null) {
+////                System.out.println(line); // Process the line (print it in this case)
+//                l_user_agent.add(line);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace(); // Handle exceptions (file not found, etc.)
+//        }
+//    }
 
     public void getWindowSize() {
         String filePath = "/deployments/window-size"; // Specify the path to your file
