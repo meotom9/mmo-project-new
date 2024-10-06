@@ -10,8 +10,10 @@
 
         <property name="hibernate.connection.username">mmo</property>
         <property name="hibernate.connection.password">123123a@</property>
+        <property name="hibernate.transaction.jta.platform">org.hibernate.service.jta.platform.internal.NoJtaPlatform</property>
 
-<!--        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>-->
+
+        <!--        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>-->
 
         <!-- org.hibernate.HibernateException: No CurrentSessionContext configured! -->
         <property name="hibernate.current_session_context_class">thread</property>

@@ -1,8 +1,14 @@
 package mmo.project.function;
 
+import mmo.project.App;
+import mmo.project.task.TaskSyncDB;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Random;
 
 public class UtilsFunction {
+    private static final Logger logger = LogManager.getLogger(UtilsFunction.class);
 
     public static final Random random;
 
@@ -18,7 +24,7 @@ public class UtilsFunction {
         int randomNumber = random.nextInt(max - min + 1) + min;
 
         // Print the random number
-        System.out.println("Random number between " + min + " and " + max + ": " + randomNumber);
+        logger.info("Random number between " + min + " and " + max + ": " + randomNumber);
 
         // Return result
         return randomNumber;
@@ -28,7 +34,7 @@ public class UtilsFunction {
 //        int randomNumber = ThreadLocalRandom.current().nextInt(min, max);
 //
 //        // Print the random number
-//        System.out.println("Random number between " + min + " and " + max + ": " + randomNumber);
+//        logger.info("Random number between " + min + " and " + max + ": " + randomNumber);
 //
 //        // Return result
 //        return randomNumber;

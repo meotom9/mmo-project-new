@@ -8,30 +8,40 @@ import mmo.project.task.TaskSyncDB;
 import java.util.Vector;
 import java.util.concurrent.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Hello world!
  */
 public class App {
+    private static final Logger logger = LogManager.getLogger(App.class);
+
     public static Vector<MmoConfig> l_configs;
     public static Vector<MmoUserAgent> l_users;
 
-    public App() {
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+    public App() throws InterruptedException {
+        ExecutorService executor = null;
+
         // Wait for the task to complete or timeout
         try {
+            executor = Executors.newFixedThreadPool(2);
             Future<?> f_config = executor.submit(new TaskSyncDB());
+            Thread.sleep(15000);
             Future<?> f_task = executor.submit(new TaskMMO());
 
-            System.out.println("Task completed successfully.");
+            logger.info("Task completed successfully.");
         } catch (Exception e) {
-            System.out.println("Task encountered an error: " + e.getCause());
+            logger.info("Task encountered an error: " + e.getCause());
         } finally {
-            executor.shutdown(); // Shut down the executor when finished
+            if(executor != null) {
+                executor.shutdown(); // Shut down the executor when finished
+            }
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    public static void main(String[] args) throws InterruptedException {
+        logger.info("Hello World!");
         new App();
     }
 }

@@ -1,19 +1,20 @@
 package mmo.project.task;
 
+import mmo.project.App;
 import mmo.project.function.GoogleFunctionUI;
 import mmo.project.function.UtilsFunction;
 import mmo.project.model.MmoConfig;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class TaskMMO implements Runnable {
-
-
-
+    private static final Logger logger = LogManager.getLogger(TaskMMO.class);
 
     @Override
     public void run() {
         try {
             while (true) {
-                System.out.println("Task started: " + Thread.currentThread().getName());
+                logger.info("TaskMMO started");
                 MmoConfig mc = TaskSyncDB.getCurrentConfig();
                 int p_userAgent = mc.getPerMobile();
                 String user_agent = "";
@@ -22,11 +23,19 @@ public class TaskMMO implements Runnable {
                 }else{
                     user_agent = TaskSyncDB.getRandomUsersPC().getUserAgent();
                 }
-                new GoogleFunctionUI().requestAPI(mc.getTerm(), mc.getSiteUrl());
-                System.out.println("Task finished: " + Thread.currentThread().getName());
+//                boolean flag = new GoogleFunctionUI().requestAPI(mc.getTerm(), mc.getSiteUrl(), user_agent, mc.getActionsMain(), mc.getActionsAds());
+                GoogleFunctionUI.getWindowSize();
+                boolean flag = GoogleFunctionUI.requestAPI(mc.getTerm(), mc.getSiteUrl(), user_agent, mc.getActionsMain(), mc.getActionsAds());
+                if(flag) {
+                    System.out.println("GoogleFunction run successfully");
+                }else{
+                    System.out.println("GoogleFunction run failed");
+                }
+                logger.info("Task finished: " + Thread.currentThread().getName());
+                Thread.sleep(mc.getIntervalS()*1000);
             }
         } catch (Exception e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
         }
     }
 

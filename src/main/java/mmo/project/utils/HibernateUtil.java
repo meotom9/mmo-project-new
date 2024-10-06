@@ -9,7 +9,7 @@ public class HibernateUtil {
     private static final EntityManagerFactory emFactory;
 
     static {
-        emFactory = Persistence.createEntityManagerFactory("your-persistence-unit");
+        emFactory = Persistence.createEntityManagerFactory("mmo-project-persistence-unit");
     }
 
     public static EntityManagerFactory getEntityManagerFactory() {
